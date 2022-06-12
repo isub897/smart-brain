@@ -4,8 +4,10 @@ import Navigation from './components/Navigation/Navigation';
 import CountMessage from './components/CountMessage/CountMessage';
 import ImageUrlForm from './components/ImageUrlForm/ImageUrlForm';
 import FancyBackground from './components/FancyBackground/FancyBackground';
+import ImageArea from './components/ImageArea/ImageArea';
 
 function App() {
+
   return (
     <div className="App">
       <FancyBackground />
@@ -13,9 +15,7 @@ function App() {
       <Logo />
       <CountMessage />
       <ImageUrlForm />
-      {/*
-      
-      <ImageArea /> */}
+      <ImageArea />
     </div>
   );
 }
