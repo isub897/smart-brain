@@ -4,9 +4,9 @@ import Tilt from 'react-tilt';
 
 const Logo = () => {
     return(
-        <div className="Logo">
+        <div className="Logo ba">
             <Tilt className="Til ma3" options={{ max : 50 }} style={{ height: 100, width: 100 }} >
-                <div className="Tilt-inner pa2">
+                <div className="Tilt-inner pa2 pointer">
                     <img alt="logo" src={brain} /> 
                 </div>
             </Tilt>
