@@ -26,7 +26,8 @@ class App extends React.Component {
     this.setState({
       input: "",
       uploadedUrl: "",
-      box: {}
+      box: {},
+      urlFailure: false
     })
   }
 
@@ -62,8 +63,9 @@ class App extends React.Component {
     .then(response => response.json())
     .then(data => {
       if(data === "error") {
-        console.log('error');
+        this.setState({urlFailure: true});
       } else {
+        this.setState({urlFailure: false});
         this.createBox(data);
       }
     })
@@ -86,7 +88,7 @@ class App extends React.Component {
             :<div className='home-route'>
               <Logo />
               <CountMessage />
-              <ImageUrlForm onSubmit={this.onSubmit} onInputChange={this.onInputChange} />
+              <ImageUrlForm urlFailure={this.state.urlFailure} onSubmit={this.onSubmit} onInputChange={this.onInputChange} />
               <ImageArea box={this.state.box} uploadedUrl={this.state.uploadedUrl} />
             </div>)
         }

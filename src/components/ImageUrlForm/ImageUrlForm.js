@@ -1,7 +1,7 @@
 import React from "react";
 import './ImageUrlForm.css'
 
-const ImageUrlForm = ({onSubmit, onInputChange}) => {
+const ImageUrlForm = ({urlFailure, onSubmit, onInputChange}) => {
     return(
         <div className="ImageUrlForm">
             <main className="pa4 black-80">
@@ -18,6 +18,10 @@ const ImageUrlForm = ({onSubmit, onInputChange}) => {
                         type="button" 
                         value="Submit"/>
                 </div>
+                {urlFailure
+                    ? <div className="error gold b pt2 tl">Please enter a vaild URL address.</div>
+                    : <div></div>
+                }
             </form>
             </main>
         </div>
