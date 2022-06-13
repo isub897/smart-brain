@@ -27,7 +27,7 @@ const SignIn = ({onRouteChange}) => {
             <div className="lh-copy mt3">
             <a href="#0" 
                 onClick={()=> onRouteChange('register')}
-                className="f6 link dim black db pa2">
+                className="f6 link dim black db pb2">
                 Register
             </a>
             <a href="#0" className="f6 link dim black db">Forgot your password?</a>
