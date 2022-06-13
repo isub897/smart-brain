@@ -51,6 +51,7 @@ class App extends React.Component {
   // this is causing the background to restart
   onSubmit = (event) => {
     this.setState({box: {}});
+    this.setState({uploadedUrl: this.state.input})
     fetch("http://localhost:3000/image", {
       method: "post",
       headers: {"Content-Type": "application/json"},
@@ -59,8 +60,13 @@ class App extends React.Component {
       })
     })
     .then(response => response.json())
-    .then(data => this.createBox(data));
-    this.setState({uploadedUrl: this.state.input})
+    .then(data => {
+      if(data === "error") {
+        console.log('error');
+      } else {
+        this.createBox(data);
+      }
+    })
   }
 
   onRouteChange = (route) => {
