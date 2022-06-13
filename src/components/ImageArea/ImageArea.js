@@ -1,14 +1,23 @@
 import React from "react";
+import "./ImageArea.css"
 
-const ImageArea = ({uploadedUrl}) => {
+const ImageArea = ({box, uploadedUrl}) => {
     return (
-        <div className="image-area mb5 mt3">
+        <div className="main">
+        <div className="image-area mb5 mt3 pb5">
             <img 
+                className="image ba"
                 id="image2detect"
                 alt="" 
                 width='500px'
                 height='auto'
-                src={uploadedUrl} ></img>
+                src={uploadedUrl} >
+            </img>
+            <div 
+                style={{top: box.topRow, left: box.leftCol, bottom: box.bottomRow, right: box.rightCol}}
+                className="bounding-box ba mb5">
+            </div>
+        </div>
         </div>
     )
 }

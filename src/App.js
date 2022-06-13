@@ -17,15 +17,40 @@ class App extends React.Component {
     this.state = {
       input: "",
       uploadedUrl: "",
-      route: 'signin'
+      route: 'home',
+      box: {}
     }
   }
 
+  createBox = (params) => {
+    const image = document.getElementById('image2detect');
+    const width = Number(image.width);
+    const height = Number(image.height);
+
+    return this.setState({box: {
+      topRow: (params.top_row * height),
+      leftCol: (params.left_col * width),
+      bottomRow: (height - (params.bottom_row * height)),
+      rightCol: (width - (params.right_col * width))
+    }})
+  }
+
+  // this is causing the background to restart
   onInputChange = (event) => {
     this.setState({input: event.target.value})
   }
 
+  // this is causing the background to restart
   onSubmit = (event) => {
+    fetch("http://localhost:3000/image", {
+      method: "post",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        url: this.state.input
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.createBox(data));
     this.setState({uploadedUrl: this.state.input})
   }
 
@@ -46,7 +71,7 @@ class App extends React.Component {
               <Logo />
               <CountMessage />
               <ImageUrlForm onSubmit={this.onSubmit} onInputChange={this.onInputChange} />
-              <ImageArea uploadedUrl={this.state.uploadedUrl} />
+              <ImageArea box={this.state.box} uploadedUrl={this.state.uploadedUrl} />
             </div>)
         }
         

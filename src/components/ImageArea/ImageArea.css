@@ -1,0 +1,26 @@
+.bounding-box {
+    position: absolute;
+    border-width: 5px;
+    border-radius: 5%;
+    border-color:black;
+}
+
+.image-area {
+    position: absolute;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.bounding-box:hover {
+    transition: 1s;
+    border-color:blueviolet;
+}
+
+.image {
+    border-radius: 5%;
+    border-width: 2px;
+    border-color:black;
+}
