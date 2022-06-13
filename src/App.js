@@ -7,6 +7,7 @@ import FancyBackground from './components/FancyBackground/FancyBackground';
 import ImageArea from './components/ImageArea/ImageArea';
 import React from 'react';
 import SignIn from './components/SignIn/SignIn';
+import Register from './components/Register/Register';
 
 
 
@@ -39,12 +40,14 @@ class App extends React.Component {
         <Navigation onRouteChange={this.onRouteChange}/>
         {this.state.route === 'signin'
           ? <SignIn onRouteChange={this.onRouteChange} />
-          : <div className='home-route'>
+          : (this.state.route === 'register'
+            ? <Register onRouteChange={this.onRouteChange}/>
+            :<div className='home-route'>
               <Logo />
               <CountMessage />
               <ImageUrlForm onSubmit={this.onSubmit} onInputChange={this.onInputChange} />
               <ImageArea uploadedUrl={this.state.uploadedUrl} />
-            </div>
+            </div>)
         }
         
         
