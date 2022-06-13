@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <FancyBackground />
-        <Navigation onRouteChange={this.onRouteChange}/>
+        <Navigation route={this.state.route} onRouteChange={this.onRouteChange}/>
         {this.state.route === 'signin'
           ? <SignIn onRouteChange={this.onRouteChange} />
           : (this.state.route === 'register'
