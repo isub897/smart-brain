@@ -1,0 +1,8 @@
+.Navigation {
+    display: flex;
+    justify-content: right;
+}
+
+.Navigation:hover {
+    transition: 1s;
+}
