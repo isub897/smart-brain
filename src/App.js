@@ -18,7 +18,7 @@ class App extends React.Component {
       input: "",
       uploadedUrl: "",
       route: 'home',
-      box: {}
+      box: {},
     }
   }
 
