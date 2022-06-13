@@ -1,8 +1,10 @@
 .bounding-box {
     position: absolute;
-    border-width: 5px;
+    box-shadow: 0 0 0 3px black inset;
     border-radius: 5%;
-    border-color:black;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
 }
 
 .image-area {
@@ -15,12 +17,10 @@
 }
 
 .bounding-box:hover {
+    box-shadow: 0 0 0 3px blueviolet;
     transition: 1s;
-    border-color:blueviolet;
 }
 
 .image {
     border-radius: 5%;
-    border-width: 2px;
-    border-color:black;
 }

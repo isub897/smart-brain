@@ -6,7 +6,7 @@ const ImageArea = ({box, uploadedUrl}) => {
         <div className="main">
         <div className="image-area mb5 mt3 pb5">
             <img 
-                className="image ba"
+                className="image"
                 id="image2detect"
                 alt="" 
                 width='500px'
@@ -15,7 +15,7 @@ const ImageArea = ({box, uploadedUrl}) => {
             </img>
             <div 
                 style={{top: box.topRow, left: box.leftCol, bottom: box.bottomRow, right: box.rightCol}}
-                className="bounding-box ba mb5">
+                className="bounding-box mb5">
             </div>
         </div>
         </div>
