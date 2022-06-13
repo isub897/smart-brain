@@ -22,6 +22,14 @@ class App extends React.Component {
     }
   }
 
+  defaultState = () => {
+    this.setState({
+      input: "",
+      uploadedUrl: "",
+      box: {}
+    })
+  }
+
   createBox = (params) => {
     const image = document.getElementById('image2detect');
     const width = Number(image.width);
@@ -42,6 +50,7 @@ class App extends React.Component {
 
   // this is causing the background to restart
   onSubmit = (event) => {
+    this.setState({box: {}});
     fetch("http://localhost:3000/image", {
       method: "post",
       headers: {"Content-Type": "application/json"},
@@ -55,6 +64,7 @@ class App extends React.Component {
   }
 
   onRouteChange = (route) => {
+    this.defaultState();
     this.setState({route: route})
   }
 
