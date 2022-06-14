@@ -17,9 +17,16 @@ class App extends React.Component {
     this.state = {
       input: "",
       uploadedUrl: "",
-      route: 'register',
+      route: 'signin',
       box: {},
+      user: {}
     }
+  }
+
+  loadUser = (userToLoad) => {
+    this.setState({
+      user: userToLoad
+    })
   }
 
   defaultState = () => {
@@ -65,6 +72,17 @@ class App extends React.Component {
       if(data === "error") {
         this.setState({urlFailure: true});
       } else {
+        fetch("http://localhost:3000/image", {
+          method: "put",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            email: this.state.user.email,  
+            entries: (Number(this.state.user.entries)+1)
+          })
+        })
+        .then(response=> response.json())
+        .then(entryCount=> {
+          this.setState(Object.assign(this.state.user, {entries: entryCount}))})
         this.setState({urlFailure: false});
         this.createBox(data);
       }
@@ -82,12 +100,12 @@ class App extends React.Component {
         <FancyBackground />
         <Navigation route={this.state.route} onRouteChange={this.onRouteChange}/>
         {this.state.route === 'signin'
-          ? <SignIn onRouteChange={this.onRouteChange} />
+          ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
           : (this.state.route === 'register'
-            ? <Register onRouteChange={this.onRouteChange}/>
+            ? <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
             :<div className='home-route'>
               <Logo />
-              <CountMessage />
+              <CountMessage user={this.state.user}/>
               <ImageUrlForm urlFailure={this.state.urlFailure} onSubmit={this.onSubmit} onInputChange={this.onInputChange} />
               <ImageArea box={this.state.box} uploadedUrl={this.state.uploadedUrl} />
             </div>)

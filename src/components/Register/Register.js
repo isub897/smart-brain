@@ -66,11 +66,12 @@ class Register extends React.Component {
         })
         .then(response=> response.json())
         .then(data=> {
-            if(data.id) {
+            if(data.email) {
                 this.setState({
                     notFilled: false,
                     failedSignin: false
                 })
+                this.props.loadUser(data);
                  return this.props.onRouteChange('home');
             }
             switch(data) {

@@ -30,14 +30,15 @@ class SignIn extends React.Component {
         })
         .then(response => response.json())
         .then(data => {
-            switch(data) {
-                case "success":
-                    this.setState({
-                        notFilled: false,
-                        failedSignin: false
-                    })
-                    this.props.onRouteChange('home');
-                    break;  
+            if(data.email) {
+                this.setState({
+                    notFilled: false,
+                    failedSignin: false
+                })
+                this.props.loadUser(data);
+                return this.props.onRouteChange('home');
+            }
+            switch(data) { 
                 case "failure":
                     this.setState({
                         notFilled: false,
