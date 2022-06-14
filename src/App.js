@@ -17,7 +17,7 @@ class App extends React.Component {
     this.state = {
       input: "",
       uploadedUrl: "",
-      route: 'signin',
+      route: 'register',
       box: {},
     }
   }
