@@ -84,6 +84,13 @@ class SignIn extends React.Component {
                         name="password"  
                         id="password"/>
                 </div>
+                {this.state.notFilled
+                    ?<div className="err-fill gold pb2 f6">Please ensure both fields are complete.</div>
+                    : (this.state.failedSignin
+                        ? <div className="err-incorrect gold  pb2 f6">Please enter correct email and password.</div>
+                        : <div></div>
+                    )
+                }
                 <label className="pa0 ma0 lh-copy f6 pointer"><input type="checkbox"/> Remember me</label>
                 </fieldset>
                 <div className="">
@@ -94,13 +101,6 @@ class SignIn extends React.Component {
                     value="Sign in"/>
                 </div>
                 <div className="lh-copy mt3">
-                {this.state.notFilled
-                    ?<div>Fill</div>
-                    : (this.state.failedSignin
-                        ? <div>Incorrect</div>
-                        : <div></div>
-                    )
-                }
                 <a href="#0" 
                     onClick={()=> onRouteChange('register')}
                     className="f6 link dim black db pb2">

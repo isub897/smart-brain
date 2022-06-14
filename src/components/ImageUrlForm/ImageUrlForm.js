@@ -19,7 +19,7 @@ const ImageUrlForm = ({urlFailure, onSubmit, onInputChange}) => {
                         value="Submit"/>
                 </div>
                 {urlFailure
-                    ? <div className="error gold b pt2 tl">Please enter a vaild URL address.</div>
+                    ? <div className="error gold pt2 tl f6">Please enter a vaild URL address.</div>
                     : <div></div>
                 }
             </form>
