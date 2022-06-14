@@ -54,7 +54,7 @@ class SignIn extends React.Component {
                     this.props.onRouteChange('signin');
                     break;    
                 default:
-                    this.props.onRouteChange('sigin');
+                    this.props.onRouteChange('signin');
             }
         })
     }
@@ -88,7 +88,7 @@ class SignIn extends React.Component {
                 {this.state.notFilled
                     ?<div className="err-fill gold pb2 f6">Please ensure both fields are complete.</div>
                     : (this.state.failedSignin
-                        ? <div className="err-incorrect gold  pb2 f6">Please enter correct email and password.</div>
+                        ? <div className="err-incorrect gold pb2 f6">Please enter correct email and password.</div>
                         : <div></div>
                     )
                 }
