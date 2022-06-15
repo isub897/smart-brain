@@ -2,12 +2,20 @@ import React from "react";
 import './ImageUrlForm.css'
 
 const ImageUrlForm = ({urlFailure, onSubmit, onInputChange}) => {
+
+    const onKeyPress = (event) => {
+        if(event.code === "Enter") {
+            onSubmit();
+        }  
+    }
+
     return(
         <div className="ImageUrlForm">
             <main className="pa4 black-80">
-            <form className="measure center">
+            <div className="measure center">
                 <div className="mt3">
                     <input 
+                        onKeyDown={onKeyPress}
                         onChange={onInputChange}
                         className="pv2 input-reset ba br2 w-70" 
                         type="text" 
@@ -22,7 +30,7 @@ const ImageUrlForm = ({urlFailure, onSubmit, onInputChange}) => {
                     ? <div className="error gold pt2 tl f6">Please enter a vaild URL address.</div>
                     : <div></div>
                 }
-            </form>
+            </div>
             </main>
         </div>
     )
