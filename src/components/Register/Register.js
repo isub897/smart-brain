@@ -10,7 +10,8 @@ class Register extends React.Component {
             password: "",
             confirm: "",
             notFilled: false,
-            failedSignin: false
+            failedSignin: false,
+            emailNotUnique: false
         }
     }
 
@@ -48,7 +49,8 @@ class Register extends React.Component {
     stateResets = () => {
         this.setState({
             failedSignin: false,
-            notFilled: false
+            notFilled: false,
+            emailNotUnique: false
         })
     }
 
@@ -78,23 +80,42 @@ class Register extends React.Component {
                 case "fill":
                     this.setState({
                         notFilled: true,
-                        failedSignin: false
+                        failedSignin: false,
+                        emailNotUnique: false 
                     })
                     this.props.onRouteChange('register');
                     break;
                 case "match":
                     this.setState({
                         notFilled: false,
-                        failedSignin: true 
+                        failedSignin: true, 
+                        emailNotUnique: false 
                     })
                     this.props.onRouteChange('register');
                     break;
+                case "Failure":
+                    this.setState({
+                        notFilled: false,
+                        failedSignin: false,
+                        emailNotUnique: true 
+                    })
+                    this.props.onRouteChange('register');
+                    break;    
                 default:
                     this.props.onRouteChange('register');
                     break;
             }
         })
     }
+
+    onKeyPress = (event) => {
+        if (event.code === "Enter") {
+            console.log("signin")
+            this.onSignin();
+        }
+    }
+
+
 
     render() {
         return(
@@ -106,6 +127,7 @@ class Register extends React.Component {
                 <div className="mt3">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Name</label>
                     <input 
+                        onKeyDown={this.onKeyPress}
                         onChange={this.onNameChange}
                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 br2" 
                         type="text" 
@@ -115,15 +137,21 @@ class Register extends React.Component {
                 <div className="mt3">
                     <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                     <input 
+                        onKeyDown={this.onKeyPress}
                         onChange={this.onEmailChange}
                         className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 br2" 
                         type="email" 
                         name="email-address"  
                         id="email-address"/>
                 </div>
+                {this.state.emailNotUnique
+                    ?<div className="err-match gold mb2 pa2 mt0 f6">This email has already been taken.</div>
+                    :<div></div>
+                }
                 <div className="mv3">
                     <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                     <input 
+                        onKeyDown={this.onKeyPress}
                         onChange={this.onPasswordChange}
                         className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 br2" 
                         type="password" 
@@ -133,6 +161,7 @@ class Register extends React.Component {
                 <div className="mv3">
                     <label className="db fw6 lh-copy f6" htmlFor="password">Confirm Password</label>
                     <input 
+                        onKeyDown={this.onKeyPress}
                         onChange={this.onConfirmChange}
                         className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 br2" 
                         type="password" 
